@@ -20,5 +20,6 @@ export const convertProductsToAstroStaticPaths = async () => {
 	const products = await getProducts();
 	return products.map((product) => ({
 		params: { productId: product.id },
+		props: { product },
 	}));
 };
