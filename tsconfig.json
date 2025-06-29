@@ -8,6 +8,15 @@
     "dist"
   ],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "types": [
+      "vitest/globals"
+    ],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
