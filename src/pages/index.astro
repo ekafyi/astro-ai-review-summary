@@ -1,9 +1,15 @@
 ---
+import type { ImageMetadata } from "astro";
+import { ProductImage } from "@/components/astro";
 import { ProductCard } from "@/components/product";
 import Layout from "@/layouts/main.astro";
 import { getProducts } from "@/lib/fake-api";
 
 const products = await getProducts();
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"@/assets/product-images/*.{jpeg,jpg,png}",
+);
 ---
 
 <Layout content={{ title: "Space Hardware" }}>
@@ -14,6 +20,16 @@ const products = await getProducts();
 		<p class="text-3xl font-bold mb-8 col-span-full" id="products-label">
 			Products
 		</p>
-		{products.map((product) => <ProductCard product={product} />)}
+		{
+			products.map((product) => (
+				<ProductCard product={product}>
+					<ProductImage
+						images={images}
+						productId={product.id}
+						slot="imageNode"
+					/>
+				</ProductCard>
+			))
+		}
 	</section>
 </Layout>
