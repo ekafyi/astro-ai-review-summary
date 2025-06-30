@@ -4,12 +4,13 @@ import type {
 	InferGetStaticParamsType,
 	InferGetStaticPropsType,
 } from "astro";
+import { ProductDetail } from "@/components/product";
+import { ReviewsSection } from "@/components/reviews-section";
 import Layout from "@/layouts/main.astro";
 import {
 	convertProductsToAstroStaticPaths,
 	getReviewsByProductId,
 } from "@/lib/fake-api";
-import { summarizeReviews } from "@/lib/product-reviews";
 
 export const getStaticPaths = (async () => {
 	return convertProductsToAstroStaticPaths();
@@ -25,20 +26,10 @@ if (!product) {
 }
 
 const reviews = await getReviewsByProductId(productId);
-const summary = await summarizeReviews(product.name, reviews);
 ---
 
 <Layout content={{ title: product.name }}>
-	<h1>{productId} {product.name}</h1>
-	<p><strong>AI Summary:</strong> {summary.text}</p>
-	<ul class="pl-4 list-disc">
-		{
-			reviews.map((review) => (
-				<li>
-					<strong>{review.id}</strong>
-					<p>{review.review}</p>
-				</li>
-			))
-		}
-	</ul>
+	<ProductDetail product={product} />
+	<hr class="h-px my-6 md:mt-12" />
+	<ReviewsSection reviews={reviews} />
 </Layout>
