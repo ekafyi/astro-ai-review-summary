@@ -21,7 +21,7 @@ if (!product) {
 <Layout content={{ title: product.name }}>
 	<ProductDetail product={product} />
 	<hr class="h-px my-6 md:mt-12" />
-	<ReviewsSectionIsland server:defer>
+	<ReviewsSectionIsland server:defer product={product}>
 		<ReviewsSectionPlaceholder slot="fallback" />
 	</ReviewsSectionIsland>
 </Layout>
