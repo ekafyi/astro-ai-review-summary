@@ -5,7 +5,11 @@ import type {
 	InferGetStaticPropsType,
 } from "astro";
 import Layout from "@/layouts/main.astro";
-import { convertProductsToAstroStaticPaths } from "@/lib/fake-api";
+import {
+	convertProductsToAstroStaticPaths,
+	getReviewsByProductId,
+} from "@/lib/fake-api";
+import { summarizeReviews } from "@/lib/product-reviews";
 
 export const getStaticPaths = (async () => {
 	return convertProductsToAstroStaticPaths();
@@ -19,9 +23,22 @@ const { product } = Astro.props as Props;
 if (!product) {
 	return Astro.redirect("/404");
 }
+
+const reviews = await getReviewsByProductId(productId);
+const summary = await summarizeReviews(product.name, reviews);
 ---
 
 <Layout content={{ title: product.name }}>
-	<h1>{productId}</h1>
-	<div>{JSON.stringify(product)}</div>
+	<h1>{productId} {product.name}</h1>
+	<p><strong>AI Summary:</strong> {summary.text}</p>
+	<ul class="pl-4 list-disc">
+		{
+			reviews.map((review) => (
+				<li>
+					<strong>{review.id}</strong>
+					<p>{review.review}</p>
+				</li>
+			))
+		}
+	</ul>
 </Layout>
