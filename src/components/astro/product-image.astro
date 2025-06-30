@@ -1,0 +1,11 @@
+---
+import { Image } from "astro:assets";
+
+const { images, productId } = Astro.props;
+---
+
+<Image
+	src={images[`/src/assets/product-images/${productId}.png`]()}
+	alt=""
+	priority
+/>

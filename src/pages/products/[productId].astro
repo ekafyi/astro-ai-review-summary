@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import { ReviewsSectionIsland } from "@/components/astro";
+import { ProductImage, ReviewsSectionIsland } from "@/components/astro";
 import { ProductDetail } from "@/components/product";
 import { ReviewsSectionPlaceholder } from "@/components/reviews-section";
 import Layout from "@/layouts/main.astro";
@@ -16,10 +16,16 @@ const { product } = Astro.props as Props;
 if (!product) {
 	return Astro.redirect("/404");
 }
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"@/assets/product-images/*.{jpeg,jpg,png}",
+);
 ---
 
 <Layout content={{ title: product.name }}>
-	<ProductDetail product={product} />
+	<ProductDetail product={product}>
+		<ProductImage images={images} productId={product.id} slot="imageNode" />
+	</ProductDetail>
 	<hr class="h-px my-6 md:mt-12" />
 	<ReviewsSectionIsland server:defer product={product}>
 		<ReviewsSectionPlaceholder slot="fallback" />

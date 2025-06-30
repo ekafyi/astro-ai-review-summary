@@ -1,15 +1,19 @@
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import type { Product } from "@/lib/sample-data";
 
-export function ProductCard({ product }: { product: Product }) {
+type ProductCardProps = { product: Product; imageNode?: React.ReactNode };
+
+export function ProductCard({ product, imageNode }: ProductCardProps) {
 	return (
 		<article className="group relative cursor-pointer overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 focus-within:outline-solid hover:shadow-lg">
 			<div className="aspect-square overflow-hidden bg-muted">
-				<img
-					src={`https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500`}
-					alt=""
-					className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-				/>
+				{imageNode || (
+					<img
+						src={`/product-images/${product.id}.png`}
+						alt=""
+						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+					/>
+				)}
 			</div>
 			<div className="space-y-2 p-4 md:p-6">
 				<h2 className="font-semibold text-lg leading-tight transition-colors group-hover:text-primary md:text-xl">
@@ -27,17 +31,20 @@ export function ProductCard({ product }: { product: Product }) {
 	);
 }
 
-export function ProductDetail({ product }: { product: Product }) {
+type ProductDetailProps = ProductCardProps;
+
+export function ProductDetail({ product, imageNode }: ProductDetailProps) {
 	return (
 		<div className="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
 			<div className="aspect-square">
-				<img
-					src={`https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500`}
-					alt=""
-					className="h-full w-full rounded-lg object-cover shadow-lg"
-				/>
+				{imageNode || (
+					<img
+						src={`/product-images/${product.id}.png`}
+						alt=""
+						className="h-full w-full rounded-lg object-cover shadow-lg"
+					/>
+				)}
 			</div>
-
 			<div className="space-y-6">
 				<a
 					href="/"
