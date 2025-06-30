@@ -1,4 +1,5 @@
 ---
+import { ProductCard } from "@/components/product";
 import Layout from "@/layouts/main.astro";
 import { getProducts } from "@/lib/fake-api";
 
@@ -6,13 +7,13 @@ const products = await getProducts();
 ---
 
 <Layout content={{ title: "Space Hardware" }}>
-	<ul>
-		{
-			products.map((product) => (
-				<li>
-					<a href={`/products/${product.id}`}>{product.name}</a>
-				</li>
-			))
-		}
-	</ul>
+	<section
+		class="grid gap-4 grid-cols-2 md:grid-cols-3"
+		aria-labelledby="products-label"
+	>
+		<p class="text-3xl font-bold mb-8 col-span-full" id="products-label">
+			Products
+		</p>
+		{products.map((product) => <ProductCard product={product} />)}
+	</section>
 </Layout>

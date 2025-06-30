@@ -1,5 +1,7 @@
 ---
 import "@/styles/global.css";
+import { SiteFooter, SiteHeader } from "@/components/astro";
+
 const { content } = Astro.props;
 ---
 
@@ -8,9 +10,14 @@ const { content } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generated" content={new Date().toISOString()} />
 		<title>{content.title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="dark">
+		<SiteHeader />
+		<main class="container mx-auto max-w-6xl px-4 py-8">
+			<slot />
+		</main>
+		<SiteFooter />
 	</body>
 </html>

@@ -1,0 +1,25 @@
+---
+import { ShoppingCart } from "lucide-react";
+---
+
+<nav
+  class="h-min flex items-center justify-between py-4 px-4 lg:px-8 md:grid md:grid-cols-3 bg-accent"
+>
+  <a
+    href="/"
+    class="md:col-start-2 md:justify-self-center my-2 transition duration-500 md:px-4 text-accent-foreground hover:text-primary"
+  >
+    <span class="font-mono lowercase tracking-wide text-lg">
+      Space Hardware
+    </span>
+  </a>
+  <div class="justify-self-end">
+    <button
+      class="flex items-center gap-2 p-4 -m-4 rounded-lg hover:bg-background/50 transition-colors"
+      onclick="alert('no op')"
+    >
+      <ShoppingCart className="h-6 w-6" />
+      <span>0</span>
+    </button>
+  </div>
+</nav>
