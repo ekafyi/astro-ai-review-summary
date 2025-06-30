@@ -31,17 +31,20 @@ export function ProductCard({ product, imageNode }: ProductCardProps) {
 	);
 }
 
-export function ProductDetail({ product }: { product: Product }) {
+type ProductDetailProps = ProductCardProps;
+
+export function ProductDetail({ product, imageNode }: ProductDetailProps) {
 	return (
 		<div className="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
 			<div className="aspect-square">
-				<img
-					src={`/product-images/${product.id}.png`}
-					alt=""
-					className="h-full w-full rounded-lg object-cover shadow-lg"
-				/>
+				{imageNode || (
+					<img
+						src={`/product-images/${product.id}.png`}
+						alt=""
+						className="h-full w-full rounded-lg object-cover shadow-lg"
+					/>
+				)}
 			</div>
-
 			<div className="space-y-6">
 				<a
 					href="/"
