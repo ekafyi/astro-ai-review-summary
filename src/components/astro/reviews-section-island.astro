@@ -1,0 +1,14 @@
+---
+import { ReviewsSection } from "@/components/reviews-section";
+import { getReviewsByProductId } from "@/lib/fake-api";
+
+const { product } = Astro.props;
+
+const reviews = await getReviewsByProductId(product.id);
+---
+
+{
+	reviews?.length && (
+		<ReviewsSection productName={product.name} reviews={reviews} />
+	)
+}

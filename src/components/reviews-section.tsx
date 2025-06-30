@@ -11,10 +11,12 @@ const ReviewsWrapper = (props: { children: React.ReactNode }) => {
 	);
 };
 
-export const ReviewsSection = async ({ reviews }: { reviews: Review[] }) => {
+type ReviewsSectionProps = { productName: string; reviews: Review[] };
+
+export const ReviewsSection = async ({ productName, reviews }: ReviewsSectionProps) => {
 	return (
 		<ReviewsWrapper>
-			<AISummary />
+			<AISummary productName={productName} reviews={reviews} />
 			<div>
 				{reviews.map((review) => (
 					<ReviewItem key={review.review} review={review} />

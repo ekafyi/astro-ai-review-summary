@@ -1,35 +1,27 @@
 ---
-import type {
-	GetStaticPaths,
-	InferGetStaticParamsType,
-	InferGetStaticPropsType,
-} from "astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { ReviewsSectionIsland } from "@/components/astro";
 import { ProductDetail } from "@/components/product";
-import { ReviewsSection } from "@/components/reviews-section";
+import { ReviewsSectionPlaceholder } from "@/components/reviews-section";
 import Layout from "@/layouts/main.astro";
-import {
-	convertProductsToAstroStaticPaths,
-	getReviewsByProductId,
-} from "@/lib/fake-api";
+import { convertProductsToAstroStaticPaths } from "@/lib/fake-api";
 
 export const getStaticPaths = (async () => {
 	return convertProductsToAstroStaticPaths();
 }) satisfies GetStaticPaths;
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { productId } = Astro.params as Params;
 const { product } = Astro.props as Props;
 if (!product) {
 	return Astro.redirect("/404");
 }
-
-const reviews = await getReviewsByProductId(productId);
 ---
 
 <Layout content={{ title: product.name }}>
 	<ProductDetail product={product} />
 	<hr class="h-px my-6 md:mt-12" />
-	<ReviewsSection reviews={reviews} />
+	<ReviewsSectionIsland server:defer product={product}>
+		<ReviewsSectionPlaceholder slot="fallback" />
+	</ReviewsSectionIsland>
 </Layout>
