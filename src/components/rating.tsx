@@ -4,7 +4,7 @@ export const Rating = ({ rating }: { rating: number }) => {
 		<div className="flex items-center gap-1">
 			{[...Array(5)].map((_, i) =>
 				i < rating ? (
-					<StarIcon key={i} className="h-5 w-5 fill-yellow-500" />
+					<StarIcon key={i} className="h-5 w-5 fill-yellow-500 stroke-yellow-500" />
 				) : (
 					<StarIcon key={i} className="h-5 w-5 fill-muted stroke-muted-foreground" />
 				),
