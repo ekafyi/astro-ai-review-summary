@@ -13,6 +13,7 @@ export const getProductById = async (slug: string) => {
 };
 
 export const getReviewsByProductId = async (productId: string) => {
+	await new Promise((resolve) => setTimeout(resolve, 2000)); // Fake delay
 	return SAMPLE_REVIEWS.filter((r) => r.productId === productId);
 };
 
