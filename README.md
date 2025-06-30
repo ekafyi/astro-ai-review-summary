@@ -1,13 +1,42 @@
-# Astro with Tailwind
+# Astro Server Islands + Gemini API + AI SDK starter template
 
-```sh
-pnpm create astro@latest -- --template with-tailwindcss
-```
+AI-generated product reviews analysis with Astro and Gemini API via Vercel’s AI SDK. Modified from [Vercel’s Next.js template](https://github.com/vercel/ai-review-summary).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+> This is a demo of AI generated summaries of customer reviews for an e-commerce storefront. The demo takes a set of customer reviews, and uses an LLM to create summaries of those reviews. It then displays the summary and the reviews in a demo UI.
+> <cite>– Original template repo description</cite>
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+## Features
 
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
+Get started quickly with this template; take advantage of Astro and AI SDK’s versatility to customise with your preferred services and stack 🚀.
+
+- [Astro](https://docs.astro.build) web framework with [Server Islands](https://docs.astro.build/en/guides/server-islands/)
+- [Gemini API](https://ai.google.dev/gemini-api) + [AI SDK](https://ai-sdk.dev/docs)
+   - or choose from other AI providers
+- React + Tailwind CSS + shadcn-ui
+   - or choose from other UI frameworks
+- Vercel hosting platform
+   - or choose from other deployment targets
+
+## Installation
+
+1. Clone this repo, _or_ [use as template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), _or_ open in cloud IDE:
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/ekafyi/astro-ai-review-summary/tree/main)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/ekafyi/astro-ai-review-summary/tree/main)
+
+2. Run `mv .env.example .env` and fill it in
+   - Get a free Gemini API key: https://aistudio.google.com/apikey
+
+3. Run `npm install` and `npm run dev`
+
+## Deploying
+
+This template uses the [Vercel](https://vercel.com) adapter. Steps to deploy:
+
+1. Create a free Vercel account
+2. Create a new project and import your repository
+3. Paste your `.env` value in the "Deploy" screen
+
+To deploy elsewhere, simply install your preferred adapter, eg. `npx astro add netlify`.
+
+More about Astro adapters: https://docs.astro.build/en/guides/on-demand-rendering/#server-adapters

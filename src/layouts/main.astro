@@ -2,7 +2,9 @@
 import "@/styles/global.css";
 import { SiteFooter, SiteHeader } from "@/components/astro";
 
-const { content } = Astro.props;
+const { title } = Astro.props.content;
+const desc = "Astro Server Islands + Gemini API + AI SDK starter template";
+const homeUrl = "https://astro-ai-review-summary.vercel.app";
 ---
 
 <html lang="en">
@@ -11,7 +13,19 @@ const { content } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generated" content={new Date().toISOString()} />
-		<title>{content.title}</title>
+
+		<title>{title}</title>
+		<meta name="description" content={desc} />
+		<link rel="canonical" href={homeUrl} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={homeUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={desc} />
+
+		<meta property="twitter:card" content="summary" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={desc} />
 	</head>
 	<body class="dark">
 		<SiteHeader />
