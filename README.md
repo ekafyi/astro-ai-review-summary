@@ -1,6 +1,6 @@
 # Astro Server Islands + Gemini API + AI SDK starter template
 
-AI-generated product reviews analysis with Astro and Gemini API via Vercel’s AI SDK. Modified from [Vercel’s Next.js template](https://github.com/vercel/ai-review-summary).
+AI-powered product reviews analysis with Astro and Gemini API via Vercel’s AI SDK. Modified from [Vercel’s Next.js template](https://github.com/vercel/ai-review-summary).
 
 > This is a demo of AI generated summaries of customer reviews for an e-commerce storefront. The demo takes a set of customer reviews, and uses an LLM to create summaries of those reviews. It then displays the summary and the reviews in a demo UI.
 > <cite>– Original template repo description</cite>
