@@ -1,0 +1,12 @@
+---
+import { ReviewsSection } from "@/components/reviews-section";
+import { getReviewsByProductId } from "@/lib/fake-api";
+
+const referer = Astro.request.headers.get("Referer") || "";
+const url = new URL(referer);
+const productId = url.pathname.replace("/products/", "");
+
+const reviews = await getReviewsByProductId(productId);
+---
+
+{reviews?.length && <ReviewsSection reviews={reviews} />}
