@@ -9,7 +9,8 @@ AI-powered product reviews analysis with Astro and Gemini API via Vercel’s AI 
 
 Get started quickly with this template; take advantage of Astro and AI SDK’s versatility to customise with your preferred services and stack 🚀.
 
-- [Astro](https://docs.astro.build) web framework with [Server Islands](https://docs.astro.build/en/guides/server-islands/)
+- [Astro](https://docs.astro.build) web framework
+   - Enjoy optimal performance by keeping pages static (or long-cached) but enabling server-side functionalities in specific [Server Island components](https://docs.astro.build/en/guides/server-islands/). This video breaks down how it works: [Server Islands are really cool](https://www.youtube.com/watch?v=uBxehYwQox4).
 - [Gemini API](https://ai.google.dev/gemini-api) + [AI SDK](https://ai-sdk.dev/docs)
    - or choose from other AI providers
 - React + Tailwind CSS + shadcn-ui
