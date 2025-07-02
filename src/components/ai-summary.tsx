@@ -1,5 +1,5 @@
 import { Rating } from "@/components/rating";
-import { getAverageRating, summarizeReviews } from "@/lib/product-reviews";
+import { getAverageRating, summarizeReviews } from "@/lib/ai-summarizer";
 import type { Review } from "@/lib/sample-data";
 
 export const SummaryWrapper = (props: { children?: React.ReactNode }) => {
