@@ -20,7 +20,7 @@ if (!summary) {
 				text: aiResult.text,
 				timestamp: String(aiResult.response.timestamp),
 			};
-			await Astro.session?.set(cacheKey, summary);
+			await Astro.session?.set(cacheKey, summary, { ttl: 60 * 60 * 24 });
 		} else {
 			console.warn("Failed to generate summary");
 		}
