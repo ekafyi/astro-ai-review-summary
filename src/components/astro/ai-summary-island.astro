@@ -11,6 +11,7 @@ const { product, reviews } = Astro.props;
 
 const cacheKey = `summary-product:${product.id}` as const;
 let summary = await Astro.session?.get(cacheKey);
+console.info(`[ai-summary-island] ${cacheKey} ${summary ? "HIT" : "MISSED"}`);
 
 if (!summary) {
 	try {
@@ -21,6 +22,7 @@ if (!summary) {
 				timestamp: String(aiResult.response.timestamp),
 			};
 			await Astro.session?.set(cacheKey, summary, { ttl: 60 * 60 * 24 });
+			console.info(`[ai-summary-island] ${cacheKey} stored`);
 		} else {
 			console.warn("Failed to generate summary");
 		}
