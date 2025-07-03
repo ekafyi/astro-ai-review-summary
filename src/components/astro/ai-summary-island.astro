@@ -1,6 +1,7 @@
 ---
 import { AISummary } from "@/components/ai-summary";
 import { summarizeReviews } from "@/lib/ai-summarizer";
+import { fakeLogger } from "@/lib/fake-logger";
 import type { Product, Review } from "@/lib/sample-data";
 
 interface Props {
@@ -9,9 +10,11 @@ interface Props {
 }
 const { product, reviews } = Astro.props;
 
+const log = fakeLogger.child({ prefix: "[ai-summary-island]" });
+
 const cacheKey = `summary-product:${product.id}` as const;
 let summary = await Astro.session?.get(cacheKey);
-console.info(`[ai-summary-island] ${cacheKey} ${summary ? "HIT" : "MISSED"}`);
+log.info(`${cacheKey} ${summary ? "HIT" : "MISSED"}`);
 
 if (!summary) {
 	try {
@@ -22,12 +25,12 @@ if (!summary) {
 				timestamp: String(aiResult.response.timestamp),
 			};
 			await Astro.session?.set(cacheKey, summary, { ttl: 60 * 60 * 24 });
-			console.info(`[ai-summary-island] ${cacheKey} stored`);
+			log.info(`${cacheKey} stored`);
 		} else {
-			console.warn("Failed to generate summary");
+			log.warn(`Summarize result incomplete or missing`);
 		}
 	} catch (error) {
-		console.error("Failed to generate summary", error);
+		log.error(`Error generating summary: ${JSON.stringify(error)}`);
 	}
 }
 ---
