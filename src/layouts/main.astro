@@ -4,7 +4,10 @@ import { SiteFooter, SiteHeader } from "@/components/astro";
 
 const { title } = Astro.props.content;
 const desc = "Astro Server Islands + Gemini API + AI SDK starter template";
-const homeUrl = "https://astro-ai-review-summary.vercel.app";
+
+const baseUrl = "https://astro-ai-review-summary.vercel.app";
+const path = new URL(Astro.url).pathname;
+const fullUrl = `${baseUrl}${path}`;
 ---
 
 <html lang="en">
@@ -16,10 +19,10 @@ const homeUrl = "https://astro-ai-review-summary.vercel.app";
 
 		<title>{title}</title>
 		<meta name="description" content={desc} />
-		<link rel="canonical" href={homeUrl} />
+		<link rel="canonical" href={fullUrl} />
 
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={homeUrl} />
+		<meta property="og:url" content={fullUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={desc} />
 
