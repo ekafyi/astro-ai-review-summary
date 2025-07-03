@@ -60,7 +60,7 @@ export function ProductDetail({ product, imageNode }: ProductDetailProps) {
 					{/* Note: Replace this part with server islands for server-side operations */}
 					<button
 						type="button"
-						className="flex flex-1 items-center justify-center space-x-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors"
+						className="flex flex-1 items-center justify-center space-x-2 rounded-lg bg-foreground px-6 py-3 font-semibold text-background transition-colors"
 					>
 						<ShoppingCart className="h-5 w-5" />
 						<span>Add to Cart</span>
