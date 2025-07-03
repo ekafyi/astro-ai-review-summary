@@ -1,5 +1,8 @@
 ---
-import { ReviewsSection } from "@/components/reviews-section";
+import { AISummaryPlaceholder } from "@/components/ai-summary";
+import { AISummaryIsland, ReviewsWrapper } from "@/components/astro";
+import { AverageRating } from "@/components/rating";
+import { ReviewItem } from "@/components/review";
 import { getReviewsByProductId } from "@/lib/fake-api";
 
 const { product } = Astro.props;
@@ -7,8 +10,10 @@ const { product } = Astro.props;
 const reviews = await getReviewsByProductId(product.id);
 ---
 
-{
-	reviews?.length && (
-		<ReviewsSection productName={product.name} reviews={reviews} />
-	)
-}
+<ReviewsWrapper>
+	<AverageRating {reviews} />
+	<AISummaryIsland product={product} reviews={reviews} server:defer>
+		<AISummaryPlaceholder slot="fallback" />
+	</AISummaryIsland>
+	{reviews.map((review) => <ReviewItem {review} />)}
+</ReviewsWrapper>

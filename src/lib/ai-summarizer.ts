@@ -12,6 +12,8 @@ export const summarizeReviews = async (productName: string, reviews: Review[]) =
 		throw new Error("GOOGLE_GENERATIVE_AI_API_KEY environment variable is required");
 	}
 
+	if (!reviews.length) return null;
+
 	// Move dynamic content (product name) to end of prompt to optimise implicit caching.
 	// See: https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai#cached-content
 	const baseContext = `You are an assistant that summarizes product reviews.

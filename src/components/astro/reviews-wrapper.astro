@@ -1,0 +1,10 @@
+---
+// This component is a workaround to use nested server islands in
+// `reviews-section-island.astro`, since nesting only works with .astro components.
+
+import { ReviewsWrapper as ReviewsWrapperReact } from "@/components/reviews-section";
+---
+
+<ReviewsWrapperReact>
+	<slot />
+</ReviewsWrapperReact>
