@@ -15,11 +15,5 @@ export default defineConfig({
 	},
 	integrations: [react()],
 	adapter: vercel(),
-	session: {
-		// driver: "memory",
-		driver: "redis",
-		options: {
-			url: process.env.UPSTASH_STORAGE_REDIS_URL,
-		},
-	},
+	session: { driver: "memory" },
 });
