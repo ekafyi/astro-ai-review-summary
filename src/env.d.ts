@@ -7,12 +7,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
 }
-
-declare namespace App {
-	interface SessionData {
-		[key: `summary-product:${string}`]: {
-			text: string;
-			timestamp: string;
-		};
-	}
-}
