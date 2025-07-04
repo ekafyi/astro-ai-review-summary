@@ -2,36 +2,44 @@
 import { AISummary } from "@/components/ai-summary";
 import { summarizeReviews } from "@/lib/ai-summarizer";
 import { fakeLogger } from "@/lib/fake-logger";
+import { redis } from "@/lib/redis";
 import type { Product, Review } from "@/lib/sample-data";
 
 interface Props {
 	product: Product;
 	reviews: Review[];
 }
+
+interface StoredSummaryValue {
+	text: string;
+	timestamp: string;
+}
+
 const { product, reviews } = Astro.props;
 
+let summary: StoredSummaryValue | null = null;
+const cacheKey = `summary-product:${product.id}`;
 const log = fakeLogger.child({ prefix: "[ai-summary-island]" });
 
-const cacheKey = `summary-product:${product.id}` as const;
-let summary = await Astro.session?.get(cacheKey);
-log.info(`${cacheKey} ${summary ? "HIT" : "MISSED"}`);
+try {
+	summary = await redis.get(cacheKey);
+	log.info(`${cacheKey} ${summary ? "HIT" : "MISSED"}`);
 
-if (!summary) {
-	try {
-		const aiResult = await summarizeReviews(product.name, reviews);
-		if (aiResult?.text) {
+	if (!summary) {
+		const aiSummary = await summarizeReviews(product.name, reviews);
+		if (aiSummary?.text) {
 			summary = {
-				text: aiResult.text,
-				timestamp: String(aiResult.response.timestamp),
+				text: aiSummary.text,
+				timestamp: String(aiSummary.response.timestamp),
 			};
-			await Astro.session?.set(cacheKey, summary, { ttl: 60 * 60 * 24 });
-			log.info(`${cacheKey} stored`);
+			await redis.set(cacheKey, summary);
+			log.info(`${cacheKey} STORED`);
 		} else {
-			log.warn(`Summarize result incomplete or missing`);
+			log.warn(`Summary result incomplete or missing`);
 		}
-	} catch (error) {
-		log.error(`Error generating summary: ${JSON.stringify(error)}`);
 	}
+} catch (error) {
+	log.error(`Error processing summary: ${error}`);
 }
 ---
 

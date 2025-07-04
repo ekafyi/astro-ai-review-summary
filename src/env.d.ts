@@ -2,17 +2,10 @@
 
 interface ImportMetaEnv {
 	readonly GOOGLE_GENERATIVE_AI_API_KEY: string;
+	readonly UPSTASH_KV_REST_API_URL: string;
+	readonly UPSTASH_KV_REST_API_TOKEN: string;
 }
 
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
-}
-
-declare namespace App {
-	interface SessionData {
-		[key: `summary-product:${string}`]: {
-			text: string;
-			timestamp: string;
-		};
-	}
 }
