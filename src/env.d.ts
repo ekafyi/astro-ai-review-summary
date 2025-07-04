@@ -2,6 +2,8 @@
 
 interface ImportMetaEnv {
 	readonly GOOGLE_GENERATIVE_AI_API_KEY: string;
+	readonly UPSTASH_KV_REST_API_URL: string;
+	readonly UPSTASH_KV_REST_API_TOKEN: string;
 }
 
 interface ImportMeta {
