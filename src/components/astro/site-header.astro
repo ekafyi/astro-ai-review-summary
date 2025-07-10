@@ -8,6 +8,7 @@ import { ShoppingCart } from "lucide-react";
   <a
     href="/"
     class="md:col-start-2 md:justify-self-center my-2 transition duration-500 md:px-4 text-accent-foreground hover:text-primary"
+    aria-label="Home page"
   >
     <span class="font-mono lowercase tracking-wide text-lg">
       Space Hardware
@@ -17,6 +18,7 @@ import { ShoppingCart } from "lucide-react";
     <button
       class="flex items-center gap-2 p-4 -m-4 rounded-lg hover:bg-background/50 transition-colors"
       onclick="alert('no op')"
+      aria-label="fake cart, 0 item"
     >
       <ShoppingCart className="h-6 w-6" />
       <span>0</span>

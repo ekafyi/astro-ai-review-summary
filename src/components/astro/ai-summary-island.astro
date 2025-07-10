@@ -43,4 +43,8 @@ try {
 }
 ---
 
-<AISummary text={summary?.text || ""} />
+<AISummary text={summary?.text || ""}>
+	<p class="sr-only" aria-live="polite" slot="top">
+		AI Summary of reviews loaded
+	</p>
+</AISummary>

@@ -15,5 +15,8 @@ const reviews = await getReviewsByProductId(product.id);
 	<AISummaryIsland product={product} reviews={reviews} server:defer>
 		<AISummaryPlaceholder slot="fallback" />
 	</AISummaryIsland>
-	{reviews.map((review) => <ReviewItem {review} />)}
+	<p class="sr-only" aria-live="polite">{`${reviews.length} reviews loaded`}</p>
+	<ul>
+		{reviews.map((review) => <ReviewItem {review} />)}
+	</ul>
 </ReviewsWrapper>

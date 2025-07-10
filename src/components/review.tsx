@@ -4,9 +4,12 @@ import type { Review } from "@/lib/sample-data";
 
 export const ReviewItem = ({ review }: { review: Review }) => {
 	return (
-		<article className="flex w-full gap-4 border-b py-6 last:border-none">
-			<Avatar className="h-10 w-10 border">
-				<AvatarImage alt="@user" src="/placeholder-user.jpg" />
+		<li
+			className="flex w-full gap-4 border-b py-6 last:border-none"
+			aria-label={`Review by ${review.authorName}, ${review.stars} stars`}
+		>
+			<Avatar className="h-10 w-10 border" aria-hidden>
+				<AvatarImage alt="" src="/placeholder-user.jpg" />
 				<AvatarFallback>{review.authorName.slice(0, 1)}</AvatarFallback>
 			</Avatar>
 			<div className="grid flex-1 gap-3">
@@ -15,11 +18,12 @@ export const ReviewItem = ({ review }: { review: Review }) => {
 						<p className="font-semibold">{review.authorName}</p>
 						<time className="text-muted-foreground">{timeAgo(new Date(review.date))}</time>
 					</div>
+					<span className="sr-only">{`${review.stars} out of 5 stars`}</span>
 					<Rating rating={review.stars} />
 				</div>
 				<p className="max-w-3xl text-muted-foreground text-sm leading-relaxed">{review.review}</p>
 			</div>
-		</article>
+		</li>
 	);
 };
 

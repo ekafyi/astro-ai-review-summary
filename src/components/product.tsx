@@ -5,7 +5,10 @@ type ProductCardProps = { product: Product; imageNode?: React.ReactNode };
 
 export function ProductCard({ product, imageNode }: ProductCardProps) {
 	return (
-		<article className="group relative cursor-pointer overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 focus-within:outline-solid hover:shadow-lg">
+		<li
+			className="group relative cursor-pointer overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 focus-within:outline-solid hover:shadow-lg"
+			aria-labelledby={`link-${product.id}`}
+		>
 			<div className="aspect-square overflow-hidden bg-muted">
 				{imageNode || (
 					<img
@@ -17,17 +20,19 @@ export function ProductCard({ product, imageNode }: ProductCardProps) {
 			</div>
 			<div className="space-y-2 p-4 md:p-6">
 				<h2 className="font-semibold text-lg leading-tight transition-colors group-hover:text-primary md:text-xl">
-					<a href={`/products/${product.id}`} className="after:absolute after:inset-0">
+					<a
+						href={`/products/${product.id}`}
+						className="after:absolute after:inset-0"
+						id={`link-${product.id}`}
+					>
 						{product.name}
 					</a>
 				</h2>
-				<div>
-					<span className="text-lg text-muted-foreground tracking-tight">
-						{`§ ${product.price}`}
-					</span>
+				<div className="text-lg text-muted-foreground tracking-tight">
+					<Price value={product.price} />
 				</div>
 			</div>
-		</article>
+		</li>
 	);
 }
 
@@ -54,8 +59,12 @@ export function ProductDetail({ product, imageNode }: ProductDetailProps) {
 					<span className="underline">All Products</span>
 				</a>
 				<h1 className="font-bold text-3xl md:text-4xl">{product.name}</h1>
-				<p className="text-xl md:text-2xl">{`§ ${product.price}`}</p>
-				<p>{product.description}</p>
+				<div className="text-xl md:text-2xl">
+					<Price value={product.price} />
+				</div>
+				<section aria-label="Product description">
+					<p>{product.description}</p>
+				</section>
 				<div className="flex space-x-4">
 					{/* Note: Replace this part with server islands for server-side operations */}
 					<button
@@ -69,5 +78,15 @@ export function ProductDetail({ product, imageNode }: ProductDetailProps) {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+function Price({ value }: { value: number }) {
+	const SAMPLE_CURRENCY = { text: "simoleons", symbol: "§" };
+	return (
+		<>
+			<span className="sr-only">{`${value} ${SAMPLE_CURRENCY.text}`}</span>
+			<span aria-hidden="true">{`${SAMPLE_CURRENCY.symbol} ${value}`}</span>
+		</>
 	);
 }

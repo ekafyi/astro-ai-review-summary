@@ -13,13 +13,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <Layout content={{ title: "Space Hardware" }}>
-	<section
+	<h1 class="text-3xl font-bold mb-8" id="products-label">All Products</h1>
+	<ul
 		class="grid gap-4 grid-cols-2 md:grid-cols-3"
 		aria-labelledby="products-label"
 	>
-		<p class="text-3xl font-bold mb-8 col-span-full" id="products-label">
-			Products
-		</p>
 		{
 			products.map((product) => (
 				<ProductCard product={product}>
@@ -31,5 +29,5 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 				</ProductCard>
 			))
 		}
-	</section>
+	</ul>
 </Layout>
