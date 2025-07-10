@@ -22,8 +22,11 @@ export const AverageRating = ({ reviews }: { reviews: Review[] }) => {
 	return (
 		<div className="flex min-h-7 flex-wrap items-center gap-x-3 gap-y-2">
 			<Rating rating={Math.round(averageRating)} />
-			<span className="font-medium text-lg">{numberWithOneDecimal(averageRating)} out of 5</span>
-			<p className="text-muted-foreground text-sm">Based on {reviewsCount} customer ratings</p>
+			<div>
+				<span className="sr-only">Rating:&nbsp;</span>
+				<span className="font-medium text-lg">{`${numberWithOneDecimal(averageRating)} out of 5 stars`}</span>
+			</div>
+			<span className="text-muted-foreground text-sm">{`Based on ${reviewsCount} customer ratings`}</span>
 		</div>
 	);
 };

@@ -26,7 +26,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 	<ProductDetail product={product}>
 		<ProductImage images={images} productId={product.id} slot="imageNode" />
 	</ProductDetail>
-	<hr class="h-px my-6 md:mt-12" />
+	<hr class="h-px my-6 md:mt-12" role="presentation" />
 	<ReviewsSectionIsland server:defer product={product}>
 		<ReviewsSectionPlaceholder slot="fallback" />
 	</ReviewsSectionIsland>
