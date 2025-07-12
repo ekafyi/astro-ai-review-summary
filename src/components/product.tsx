@@ -3,21 +3,13 @@ import type { Product } from "@/lib/sample-data";
 
 type ProductCardProps = { product: Product; imageNode?: React.ReactNode };
 
-export function ProductCard({ product, imageNode }: ProductCardProps) {
+export function ProductCard({ product, imageNode = null }: ProductCardProps) {
 	return (
 		<li
 			className="group relative cursor-pointer overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 focus-within:outline-solid hover:shadow-lg"
 			aria-labelledby={`link-${product.id}`}
 		>
-			<div className="aspect-square overflow-hidden bg-muted">
-				{imageNode || (
-					<img
-						src={`/product-images/${product.id}.png`}
-						alt=""
-						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-					/>
-				)}
-			</div>
+			<div className="aspect-square overflow-hidden bg-muted">{imageNode}</div>
 			<div className="space-y-2 p-4 md:p-6">
 				<h2 className="font-semibold text-lg leading-tight transition-colors group-hover:text-primary md:text-xl">
 					<a
@@ -38,18 +30,10 @@ export function ProductCard({ product, imageNode }: ProductCardProps) {
 
 type ProductDetailProps = ProductCardProps;
 
-export function ProductDetail({ product, imageNode }: ProductDetailProps) {
+export function ProductDetail({ product, imageNode = null }: ProductDetailProps) {
 	return (
 		<div className="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
-			<div className="aspect-square">
-				{imageNode || (
-					<img
-						src={`/product-images/${product.id}.png`}
-						alt=""
-						className="h-full w-full rounded-lg object-cover shadow-lg"
-					/>
-				)}
-			</div>
+			<div className="aspect-square">{imageNode}</div>
 			<div className="space-y-6">
 				<a
 					href="/"
