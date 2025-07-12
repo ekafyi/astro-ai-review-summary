@@ -29,6 +29,18 @@ const fullUrl = `${baseUrl}${path}`;
 		<meta property="twitter:card" content="summary" />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={desc} />
+
+		{
+			import.meta.env.VERCEL_ENV === "production" &&
+			import.meta.env.UMAMI_WEBSITE_ID ? (
+				<script
+					defer
+					src="https://eu.umami.is/script.js"
+					data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
+					data-tag=""
+				/>
+			) : null
+		}
 	</head>
 	<body class="dark">
 		<SiteHeader />
