@@ -27,15 +27,18 @@ npm create astro@latest my-astro-project -- --template ekafyi/astro-ai-review-su
 
 ## Features
 
+<img width="1411" height="443" alt="100 Lighthouse performance score" src="https://github.com/user-attachments/assets/8630e350-54f7-4d13-9ab6-039b86b9874e" />
+&nbsp;
+
 - [Astro](https://docs.astro.build/) web framework
+   - Performant by default
    - [Server Islands](https://docs.astro.build/en/guides/server-islands/) for enabling server-side functionalities by component. Keep rest of page static or long-cached for optimal performance.
    - [Adapters](https://docs.astro.build/en/guides/on-demand-rendering/#server-adapters) for deploy target. Deploy to Vercel (default), Netlify, Cloudflare, Node.js, and more.
    - [`Image` component](https://docs.astro.build/en/guides/images/#astro-components-for-images) for image transformation
 - [AI SDK](https://ai-sdk.dev/docs)
    - Unified API for interfacing with LLMs from various providers. Supports Google (default), OpenAI, Anthropic, and more.
 - [React](https://react.dev/) + [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) for UI components
-- Data persistence
-   - [Upstash Redis](https://upstash.com) for key-value storage
+- [Upstash Redis](https://upstash.com) for data persistence
 - Basic must-haves
    - Semantic markup and ARIA attributes for accessibility
    - [Vitest](https://vitest.dev/) for unit testing
