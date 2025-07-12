@@ -68,7 +68,7 @@ Image files to be processed by Astro Image component
 - `/`
    - React UI components
 - `/astro` 
-   - [Astro Server Island components]((https://docs.astro.build/en/guides/server-islands/))
+   - [Astro Server Island components](https://docs.astro.build/en/guides/server-islands/)
    - [Astro Image component](https://docs.astro.build/en/guides/images/#astro-components-for-images)
    - Sitewide footer and header
 - `/ui`
