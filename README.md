@@ -129,9 +129,7 @@ Use another provider:
 
 Docs: https://ai-sdk.dev/providers/ai-sdk-providers
 
-### UI
-
-#### Frontend frameworks
+### Frontend frameworks
 
 Add an Astro frontend framework integration:
 
@@ -147,7 +145,7 @@ Docs:
 - https://docs.astro.build/en/guides/framework-components
 - https://docs.astro.build/en/basics/astro-components/
 
-#### Styling
+### Styling
 
 Vanilla CSS is supported by default. Edit in `src/styles/global.css`.
 
